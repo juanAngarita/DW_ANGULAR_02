@@ -2,6 +2,9 @@
 //Define la estructura de una entidad, siempre publicos
 //No puede tener constructor
 //Se pierden otras ventajas de POO
+
+import { homework } from "../model/homework";
+
 //Los metodos siempre son abstractos
 export interface Student{
     id:number;
@@ -15,4 +18,5 @@ export interface Student{
     address?:string;
     activated:boolean;
     fechaPago:Date;
+    tareas?: homework[];
 }

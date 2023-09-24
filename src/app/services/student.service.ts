@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../student/student';
+import { HomeworkService } from './homework.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  constructor() { }
+  constructor(
+    private homeworkService: HomeworkService
+  ) { }
 
   //Base de datos falsa con varios estudiantes.
   studentList: Student[] = [
@@ -20,6 +23,10 @@ export class StudentService {
       ppa: 4.7,
       activated: true,
       fechaPago: new Date(),
+      tareas: [
+        this.homeworkService.findById(1),
+        this.homeworkService.findById(2)
+      ]
     },
     {
       id: 2,
@@ -52,7 +59,7 @@ export class StudentService {
       phone: '3122112535',
       ppa: 3.5,
       activated: true,
-      fechaPago: new Date(),
+      fechaPago: new Date()
     },
   ];
 

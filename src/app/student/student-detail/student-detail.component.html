@@ -13,6 +13,13 @@
       <li>Activo: {{ student.activated }}</li>
     </ul>
 
+    <ul *ngFor="let tarea of student.tareas">
+      
+      <li>Nombre: {{ tarea.description }}</li>
+      <li>Apellidos: {{ tarea.title }}</li>
+
+    </ul>
+
     <button (click) = "siguiente()" class="btn btn-primary"> SIGUIENTE</button>
 
   </ng-container>
