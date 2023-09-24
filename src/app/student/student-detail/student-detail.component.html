@@ -1,0 +1,20 @@
+<div>
+  <ng-container *ngIf="student">
+  <h4>INFORMACION ESTUDIANTE</h4>
+  <!--Si el estudiante existe muestro sus datos-->
+    <ul>
+      <li>Nombre: {{ student.name }}</li>
+      <li>Apellidos: {{ student.lastName }}</li>
+      <li>Edad: {{ student.age }}</li>
+      <li>Corrro: {{ student.email }}</li>
+      <li>Telefono: {{ student.phone }}</li>
+      <li>Promedio: {{ student.ppa }}</li>
+      <li *ngIf="student.address">Address: {{ student.address }}</li>
+      <li>Activo: {{ student.activated }}</li>
+    </ul>
+
+    <button (click) = "siguiente()" class="btn btn-primary"> SIGUIENTE</button>
+
+  </ng-container>
+
+</div>

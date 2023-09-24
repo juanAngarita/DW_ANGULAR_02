@@ -1,0 +1,57 @@
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">PPA</th>
+        <th scope="col">Activated</th>
+        <th scope="col">Fecha Pago</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of studentList">
+        <ng-container *ngIf="student.age > 10">
+          <td>{{ student.name | lowercase }}</td>
+          <td>{{ student.lastName | uppercase | emoticon }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.phone }}</td>
+          <td [ngClass]="student.ppa < 3.7 ? 'low-ppa' : 'high-ppa'">
+            {{ student.ppa }}
+          </td>
+          <td>
+            <i *ngIf="student.activated" class="bi bi-check-circle">YES</i>
+            <i *ngIf="!student.activated" class="bi bi-exclamation-circle">NO</i>
+          </td>
+          <td>{{ student.fechaPago | date : "dd/MM/yyyy" }}</td>
+
+          <td>
+            <button class="btn btn-primary" (click)="mostrarEstudiante(student)">
+              SELECT
+            </button>
+            <button class="btn btn-danger" (click)="eliminarEstudiante(student)">
+              DELETE
+            </button>
+            <a [routerLink]="['/student/detail', student.id]">
+              <button class="btn btn-primary" >
+                VER DETALLE
+              </button>
+            </a>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="mostrarFormulario()">AGREGAR ESTUDIANTE</button>
+  <app-student-detail [student]="selectedStudent"></app-student-detail>
+  <ng-container *ngIf="mostrarForm">
+    <app-student-form (addStudentEvent)="agregarEstudiante($event)"
+      (ocultarFormularioEvent)="ocultarFormulario($event)"></app-student-form>
+  </ng-container>
+
+</div>
